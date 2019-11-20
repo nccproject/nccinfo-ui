@@ -33,16 +33,16 @@
         <div class="columns">
           <div class="column info-title">{{ $t('address.balance') }}</div>
           <div class="column info-value monospace">
-            {{ balance | qtum }} QTUM
+            {{ balance | ncc }} NCC
             <span v-if="unconfirmed !== '0' && staking !== '0'">
-              ({{ unconfirmed | qtum }} QTUM {{ $t('address.unconfirmed') }},
-              {{ staking | qtum }} QTUM {{ $t('address.staking') }})
+              ({{ unconfirmed | ncc }} NCC {{ $t('address.unconfirmed') }},
+              {{ staking | ncc }} NCC {{ $t('address.staking') }})
             </span>
             <span v-else-if="unconfirmed !== '0'">
-              ({{ unconfirmed | qtum }} QTUM {{ $t('address.unconfirmed') }})
+              ({{ unconfirmed | ncc }} NCC {{ $t('address.unconfirmed') }})
             </span>
             <span v-else-if="staking !== '0'">
-              ({{ staking | qtum }} QTUM {{ $t('address.staking') }})
+              ({{ staking | ncc }} NCC {{ $t('address.staking') }})
             </span>
           </div>
         </div>
@@ -52,17 +52,17 @@
         </div>
         <div class="columns">
           <div class="column info-title">{{ $t('address.total_received') }}</div>
-          <div class="column info-value monospace">{{ totalReceived | qtum }} QTUM</div>
+          <div class="column info-value monospace">{{ totalReceived | ncc }} NCC</div>
         </div>
         <div class="columns">
           <div class="column info-title">{{ $t('address.total_sent') }}</div>
-          <div class="column info-value monospace">{{ totalSent | qtum }} QTUM</div>
+          <div class="column info-value monospace">{{ totalSent | ncc }} NCC</div>
         </div>
         <div class="columns" v-if="existingTokenBalances.length">
           <div class="column info-title">{{ $t('address.token_balances') }}</div>
           <div class="column info-value">
             <div v-for="token in existingTokenBalances" class="monospace">
-              {{ token.balance | qrc20(token.decimals) }}
+              {{ token.balance | nrc20(token.decimals) }}
               <AddressLink :address="token.address">
                 {{ token.symbol || $t('contract.token.tokens') }}
               </AddressLink>
@@ -93,7 +93,7 @@
             {{ $t('address.balance_changes') }}
           </nuxt-link>
         </li>
-        <li v-if="qrc20Balances.length"
+        <li v-if="nrc20Balances.length"
           :class="{'is-active': $route.matched.some(route => route.name === 'address-id-token-balance')}">
           <nuxt-link :to="{name: 'address-id-token-balance', params: {id}}">
             {{ $t('address.token_balance_changes') }}
@@ -101,7 +101,7 @@
         </li>
       </ul>
     </div>
-    <nuxt-child :tokens="qrc20Balances.map(({address, name, symbol}) => ({address, name, symbol}))" />
+    <nuxt-child :tokens="nrc20Balances.map(({address, name, symbol}) => ({address, name, symbol}))" />
   </section>
 </template>
 
@@ -109,7 +109,7 @@
   import Vue from 'vue'
   import Address from '@/models/address'
   import Transaction from '@/models/transaction'
-  import {RequestError} from '@/services/qtuminfo-api'
+  import {RequestError} from '@/services/nccinfo-api'
   import {extendAddress} from '@/utils/address'
   import {scrollIntoView} from '@/utils/dom'
 
@@ -127,7 +127,7 @@
         totalSent: '0',
         unconfirmed: '0',
         staking: '0',
-        qrc20Balances: [],
+        nrc20Balances: [],
         ranking: 0,
         blocksMined: 0,
         transactionCount: 0
@@ -159,7 +159,7 @@
         return result
       },
       existingTokenBalances() {
-        return this.qrc20Balances.filter(token => token.balance !== '0')
+        return this.nrc20Balances.filter(token => token.balance !== '0')
       },
       myAddresses() {
         return this.$store.state.address.myAddresses

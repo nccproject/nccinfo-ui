@@ -14,53 +14,53 @@
             <AddressLink :address="address" plain />
           </div>
         </div>
-        <template v-if="qrc20">
-          <div class="columns" v-if="qrc20.name">
+        <template v-if="nrc20">
+          <div class="columns" v-if="nrc20.name">
             <div class="column info-title">{{ $t('contract.token.name') }}</div>
-            <div class="column info-value">{{ qrc20.name }}</div>
+            <div class="column info-value">{{ nrc20.name }}</div>
           </div>
-          <div class="columns" v-if="qrc20.holders">
+          <div class="columns" v-if="nrc20.holders">
             <div class="column info-title">{{ $t('contract.token.total_supply') }}</div>
             <div class="column info-value monospace">
-              {{ qrc20.totalSupply | qrc20(qrc20.decimals, true) }}
-              {{ qrc20.symbol || $t('contract.token.tokens') }}
+              {{ nrc20.totalSupply | nrc20(nrc20.decimals, true) }}
+              {{ nrc20.symbol || $t('contract.token.tokens') }}
             </div>
           </div>
           <div class="columns">
             <div class="column info-title">{{ $t('contract.token.token_holders') }}</div>
-            <div class="column info-value">{{ qrc20.holders }}</div>
+            <div class="column info-value">{{ nrc20.holders }}</div>
           </div>
         </template>
-        <template v-if="qrc721">
-          <div class="columns" v-if="qrc721.name">
+        <template v-if="nrc721">
+          <div class="columns" v-if="nrc721.name">
             <div class="column info-title">{{ $t('contract.token.name') }}</div>
-            <div class="column info-value">{{ qrc721.name }}</div>
+            <div class="column info-value">{{ nrc721.name }}</div>
           </div>
           <div class="columns">
             <div class="column info-title">{{ $t('contract.token.total_supply') }}</div>
             <div class="column info-value monospace">
-              {{ qrc721.totalSupply }}
-              {{ qrc721.symbol || $t('contract.token.tokens') }}
+              {{ nrc721.totalSupply }}
+              {{ nrc721.symbol || $t('contract.token.tokens') }}
             </div>
           </div>
         </template>
         <div class="columns">
           <div class="column info-title">{{ $t('contract.balance') }}</div>
-          <div class="column info-value monospace">{{ balance | qtum }} QTUM</div>
+          <div class="column info-value monospace">{{ balance | ncc }} NCC</div>
         </div>
         <div class="columns">
           <div class="column info-title">{{ $t('contract.total_received') }}</div>
-          <div class="column info-value monospace">{{ totalReceived | qtum }} QTUM</div>
+          <div class="column info-value monospace">{{ totalReceived | ncc }} NCC</div>
         </div>
         <div class="columns">
           <div class="column info-title">{{ $t('contract.total_sent') }}</div>
-          <div class="column info-value monospace">{{ totalSent | qtum }} QTUM</div>
+          <div class="column info-value monospace">{{ totalSent | ncc }} NCC</div>
         </div>
         <div class="columns" v-if="existingTokenBalances.length">
           <div class="column info-title">{{ $t('address.token_balances') }}</div>
           <div class="column info-value">
             <div v-for="token in existingTokenBalances" class="monospace">
-              {{ token.balance | qrc20(token.decimals) }}
+              {{ token.balance | nrc20(token.decimals) }}
               <AddressLink :address="token.address">
                 {{ token.symbol || token.name || $t('contract.token.tokens') }}
               </AddressLink>
@@ -82,7 +82,7 @@
           </nuxt-link>
         </li>
         <li
-          v-if="type === 'qrc20'"
+          v-if="type === 'nrc20'"
           :class="{'is-active': $route.matched.some(route => route.name === 'contract-id-rich-list')}">
           <nuxt-link :to="{name: 'contract-id-rich-list', params: {id}}">
             {{ $t('misc.rich_list_title') }}
@@ -90,13 +90,13 @@
         </li>
       </ul>
     </div>
-    <nuxt-child :qrc20="qrc20" />
+    <nuxt-child :nrc20="nrc20" />
   </section>
 </template>
 
 <script>
   import Contract from '@/models/contract'
-  import {RequestError} from '@/services/qtuminfo-api'
+  import {RequestError} from '@/services/nccinfo-api'
 
   export default {
     head() {
@@ -110,12 +110,12 @@
         addressHex: '',
         vm: '',
         type: '',
-        qrc20: null,
-        qrc721: null,
+        nrc20: null,
+        nrc721: null,
         balance: '0',
         totalReceived: '0',
         totalSent: '0',
-        qrc20Balances: [],
+        nrc20Balances: [],
         transactionCount: 0
       }
     },
@@ -127,12 +127,12 @@
           addressHex: contract.addressHex,
           vm: contract.vm,
           type: contract.type,
-          qrc20: contract.qrc20,
-          qrc721: contract.qrc721,
+          nrc20: contract.nrc20,
+          nrc721: contract.nrc721,
           balance: contract.balance,
           totalReceived: contract.totalReceived,
           totalSent: contract.totalSent,
-          qrc20Balances: contract.qrc20Balances,
+          nrc20Balances: contract.nrc20Balances,
           transactionCount: contract.transactionCount
         }
       } catch (err) {
@@ -155,7 +155,7 @@
         return Math.ceil(this.transactionCount / 20)
       },
       existingTokenBalances() {
-        return this.qrc20Balances.filter(token => token.balance !== '0')
+        return this.nrc20Balances.filter(token => token.balance !== '0')
       }
     }
   }

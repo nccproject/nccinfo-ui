@@ -44,7 +44,7 @@
         </div>
         <div class="columns" v-if="fees > 0">
           <div class="column info-title">{{ $t('transaction.transaction_fee') }}</div>
-          <div class="column info-value monospace">{{ fees | qtum }} QTUM</div>
+          <div class="column info-value monospace">{{ fees | ncc }} NCC</div>
         </div>
 
         <Transaction
@@ -52,7 +52,7 @@
             id, blockHeight, timestamp,
             inputs, outputs, refundValue, fees,
             contractSpends,
-            qrc20TokenTransfers, qrc721TokenTransfers
+            nrc20TokenTransfers, nrc721TokenTransfers
           }"
           detailed
           @transaction-change="refresh" />
@@ -119,7 +119,7 @@
 <script>
   import Block from '@/models/block'
   import Transaction from '@/models/transaction'
-  import {RequestError} from '@/services/qtuminfo-api'
+  import {RequestError} from '@/services/nccinfo-api'
 
   export default {
     head() {
@@ -141,8 +141,8 @@
         timestamp: null,
         size: 0,
         contractSpends: [],
-        qrc20TokenTransfers: [],
-        qrc721TokenTransfers: [],
+        nrc20TokenTransfers: [],
+        nrc721TokenTransfers: [],
       }
     },
     async asyncData({req, params, error}) {
@@ -161,8 +161,8 @@
           timestamp: transaction.timestamp,
           size: transaction.size,
           contractSpends: transaction.contractSpends,
-          qrc20TokenTransfers: transaction.qrc20TokenTransfers,
-          qrc721TokenTransfers: transaction.qrc721TokenTransfers
+          nrc20TokenTransfers: transaction.nrc20TokenTransfers,
+          nrc721TokenTransfers: transaction.nrc721TokenTransfers
         }
       } catch (err) {
         if (err instanceof RequestError) {
@@ -196,8 +196,8 @@
         this.fees = transaction.fees
         this.refundValue = transaction.refundValue
         this.contractSpends = transaction.contractSpends
-        this.qrc20TokenTransfers = transaction.qrc20TokenTransfers
-        this.qrc721TokenTransfers = transaction.qrc721TokenTransfers
+        this.nrc20TokenTransfers = transaction.nrc20TokenTransfers
+        this.nrc721TokenTransfers = transaction.nrc721TokenTransfers
       },
       splitData(data) {
         let chunks = data.length / 64

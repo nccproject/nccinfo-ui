@@ -16,7 +16,7 @@
   import Vue from 'vue'
   import Address from '@/models/address'
   import Transaction from '@/models/transaction'
-  import {RequestError} from '@/services/qtuminfo-api'
+  import {RequestError} from '@/services/nccinfo-api'
   import {extendAddress} from '@/utils/address'
   import {scrollIntoView} from '@/utils/dom'
 
@@ -89,8 +89,8 @@
         oldTransaction.refundValue = newTransaction.refundValue
         oldTransaction.fees = newTransaction.fees
         oldTransaction.contractSpends = newTransaction.contractSpends
-        oldTransaction.qrc20TokenTransfers = newTransaction.qrc20TokenTransfers
-        oldTransaction.qrc721TokenTransfers = newTransaction.qrc721TokenTransfers
+        oldTransaction.nrc20TokenTransfers = newTransaction.nrc20TokenTransfers
+        oldTransaction.nrc721TokenTransfers = newTransaction.nrc721TokenTransfers
       },
       subscribeAddress(address) {
         this.$subscribe('address/' + address, 'address/transaction', this._onTransaction)

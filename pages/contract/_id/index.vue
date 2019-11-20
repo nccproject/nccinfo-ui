@@ -16,7 +16,7 @@
   import Vue from 'vue'
   import Contract from '@/models/contract'
   import Transaction from '@/models/transaction'
-  import {RequestError} from '@/services/qtuminfo-api'
+  import {RequestError} from '@/services/nccinfo-api'
   import {scrollIntoView} from '@/utils/dom'
 
   export default {
@@ -28,7 +28,7 @@
       }
     },
     props: {
-      qrc20: {required: true}
+      nrc20: {required: true}
     },
     async asyncData({req, params, query, redirect, error}) {
       try {
@@ -86,8 +86,8 @@
         oldTransaction.refundValue = newTransaction.refundValue
         oldTransaction.fees = newTransaction.fees
         oldTransaction.contractSpends = newTransaction.contractSpends
-        oldTransaction.qrc20TokenTransfers = newTransaction.qrc20TokenTransfers
-        oldTransaction.qrc721TokenTransfers = newTransaction.qrc721TokenTransfers
+        oldTransaction.nrc20TokenTransfers = newTransaction.nrc20TokenTransfers
+        oldTransaction.nrc721TokenTransfers = newTransaction.nrc721TokenTransfers
       },
       subscribeTransactions() {
         this.$subscribe('address/' + this.id, 'address/transaction', this._onTransaction)
