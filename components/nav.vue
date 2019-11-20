@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="navbar-brand is-size-4">
       <nuxt-link to="/" class="navbar-item">
-        <span class="ncc-icon ncc-icon--ncc" /> ncc.info
+        <span /> ncc.info
       </nuxt-link>
       <button type="button" class="button navbar-burger" @click="showMenu = !showMenu">
         <span></span><span></span><span></span>
