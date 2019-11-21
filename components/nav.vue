@@ -14,20 +14,20 @@
           <nuxt-link to="/block">{{ $tc('blockchain.block', 2) }}</nuxt-link>
           <nuxt-link to="/contract/tokens">{{ $tc('blockchain.token') }}</nuxt-link>
           <div class="has-dropdown is-hoverable">
-            <nuxt-link to="/misc/charts" class="navbar-link">{{ $t('misc.misc') }}</nuxt-link>
+            <nuxt-link to="/misc/rich-list" class="navbar-link">{{ $t('misc.misc') }}</nuxt-link>
             <div class="navbar-dropdown is-boxed">
-              <nuxt-link to="/misc/charts" class="navbar-item">
-                {{ $t('misc.charts_title') }}
-              </nuxt-link>
+<!--              <nuxt-link to="/misc/charts" class="navbar-item">-->
+<!--                {{ $t('misc.charts_title') }}-->
+<!--              </nuxt-link>-->
               <nuxt-link to="/misc/rich-list" class="navbar-item">
                 {{ $t('misc.rich_list_title') }}
               </nuxt-link>
-              <nuxt-link to="/misc/biggest-miners" class="navbar-item">
-                {{ $t('misc.biggest_miners_title') }}
-              </nuxt-link>
-              <nuxt-link to="/misc/stake-calculator" class="navbar-item">
-                {{ $t('misc.stake_calculator.title') }}
-              </nuxt-link>
+<!--              <nuxt-link to="/misc/biggest-miners" class="navbar-item">-->
+<!--                {{ $t('misc.biggest_miners_title') }}-->
+<!--              </nuxt-link>-->
+<!--              <nuxt-link to="/misc/stake-calculator" class="navbar-item">-->
+<!--                {{ $t('misc.stake_calculator.title') }}-->
+<!--              </nuxt-link>-->
               <nuxt-link to="/misc/raw-tx" class="navbar-item">
                 Send Raw Transaction
               </nuxt-link>
