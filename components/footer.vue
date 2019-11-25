@@ -3,31 +3,9 @@
     <div class="container">
       <h3 class="is-size-4 is-uppercase">{{ $t('footer.contact_us') }}</h3>
       <div class="line"></div>
-      <a href="mailto:foundation@ncc.org">foundation@ncc.org</a>
-      <ul class="links">
-        <li>
-          <a target="_blank" href="https://www.facebook.com/NccOfficial/">
-            <Icon icon="facebook" brands /> {{ $t('footer.facebook') }}
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://twitter.com/nccofficial">
-            <Icon icon="twitter" brands /> {{ $t('footer.twitter') }}
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://forum.ncc.org">
-            <span class="ncc-icon ncc-icon--ncc"></span> {{ $t('footer.forum') }}
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://github.com/nccproject/ncc">
-            <Icon icon="github" brands /> Github
-          </a>
-        </li>
-      </ul>
+      <a href="mailto:admin@ncccoin.biz">admin@ncccoin.biz</a>
       <div class="copyright">
-        2017 - 2019 NCC CHAIN FOUNDATION &copy; All rights Reserved
+        2019 - 2021 NC PARTNERS &copy; All rights Reserved
       </div>
     </div>
   </footer>

@@ -72,7 +72,7 @@
       totalSupply() {
         let height = this.blockchain.height
         if (height <= 5000) {
-          return height * 20000
+          return height * 2320000
         }
         let supply = 116e16
         let reward = 0
